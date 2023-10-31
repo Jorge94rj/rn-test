@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Articles from './src/screens/Articles';
+import Article from './src/screens/Article';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Articles} options={{ headerShown: false }} />
+          <Stack.Screen name="Article" component={Article} options={{ headerTitle: 'Back' }} />
+        </Stack.Navigator>
+      </GestureHandlerRootView>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
