@@ -10,25 +10,19 @@ interface IArticleListItem {
   uri: string;
   createdAt: string;
   onDeleteItem: (id: string) => void;
+  openArticle: (uri: string) => void;
 }
 
-export default function ArticleListItem({ id, title, author, uri, createdAt, onDeleteItem }: IArticleListItem) {
-
-  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase, string>>();
-
-  const openArticle = () => {
-    navigation.navigate('Article', { uri });
-  };
-
-  const Options = () => (
+export default function ArticleListItem({ id, title, author, uri, createdAt, onDeleteItem, openArticle }: IArticleListItem) {
+  const SwipableAction = () => (
     <View style={styles.optionsContainer}>
       <Text style={styles.optionsContainerText}>Delete</Text>
     </View>
   );
 
   return (
-    <Swipeable renderRightActions={Options} onSwipeableOpen={() => onDeleteItem(id)}>
-      <Pressable onPress={openArticle}>
+    <Swipeable renderRightActions={SwipableAction} onSwipeableOpen={() => onDeleteItem(id)}>
+      <Pressable onPress={() => openArticle(uri)}>
         <View style={styles.container}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>{`${author} - ${createdAt}`}</Text>

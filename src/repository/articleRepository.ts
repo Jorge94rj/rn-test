@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { IArticle } from '../model/article';
 
 interface IHit {
   objectID: string;
@@ -6,14 +7,6 @@ interface IHit {
   story_title: string;
   story_url: string;
   created_at: string;
-}
-
-export interface IArticle {
-  id: string;
-  author: string;
-  title: string;
-  uri: string;
-  createdAt: string;
 }
 
 export async function getArticles(offset: number): Promise<IArticle[]> {

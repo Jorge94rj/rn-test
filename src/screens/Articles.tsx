@@ -1,10 +1,10 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import ArticleList from "../components/ArticleList";
+import ArticleListView from "../view/ArticleListView";
 
 export default function Articles() {
   return(
     <SafeAreaView>
-      <ArticleList />
+      <ArticleListView />
     </SafeAreaView>
   )
 }

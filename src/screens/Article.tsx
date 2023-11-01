@@ -1,16 +1,7 @@
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { WebView } from 'react-native-webview';
+import ArticleView from "../view/ArticleView";
 
-type RootStackParamList = {
-  Article: undefined; // screen
-  ArticleProps: { uri: string };
-};
-
-export type RouteProps = NativeStackScreenProps<RootStackParamList, 'ArticleProps', 'Stack'>;
-
-export default function Article({ route }: RouteProps) {
-  const { params: { uri } } = route;
+export default function Article() {
   return (
-    <WebView source={{ uri }} />
+    <ArticleView />
   )
 }
