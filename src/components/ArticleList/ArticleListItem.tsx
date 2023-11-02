@@ -1,9 +1,8 @@
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import React from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-interface IArticleListItem {
+export interface IArticleListItem {
   id: string;
   title: string;
   author: string;
@@ -24,8 +23,8 @@ export default function ArticleListItem({ id, title, author, uri, createdAt, onD
     <Swipeable renderRightActions={SwipableAction} onSwipeableOpen={() => onDeleteItem(id)}>
       <Pressable onPress={() => openArticle(uri)}>
         <View style={styles.container}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subTitle}>{`${author} - ${createdAt}`}</Text>
+          <Text testID="title" style={styles.title}>{title}</Text>
+          <Text testID="details" style={styles.subTitle}>{`${author} - ${createdAt}`}</Text>
         </View>
       </Pressable>
     </Swipeable>

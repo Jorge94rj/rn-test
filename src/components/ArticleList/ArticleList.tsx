@@ -3,7 +3,7 @@ import { RefreshControl, FlatList, StyleSheet } from "react-native";
 import { IArticle } from "../../model/article";
 import ArticleListItem from "./ArticleListItem";
 
-interface IArticleList {
+export interface IArticleList {
   data: IArticle[];
   loading: boolean;
   loadMore: () => void;
