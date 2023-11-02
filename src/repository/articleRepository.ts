@@ -9,11 +9,11 @@ interface IHit {
   created_at: string;
 }
 
-export async function getArticles(offset: number): Promise<IArticle[]> {
+export async function getArticles(): Promise<IArticle[]> {
   try {
     // AsyncStorage.clear();
-    const response = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=mobile&offset=${offset}&length=10`);
-    // const response = await fetch(`https://hn.algolia.co/api/v1/search_by_date?query=mobile&offset=${offset}&length=10`);
+    const response = await fetch(`https://hn.algolia.com/api/v1/search_by_date?query=mobile`);
+    // const response = await fetch(`https://hn.algolia.co/api/v1/search_by_date?query=mobile`);
     const result = await response.json();
     const hits = result.hits as IHit[];
 
@@ -32,9 +32,6 @@ export async function getArticles(offset: number): Promise<IArticle[]> {
     const savedArticles = await getSavedArticles();    
     const deletedArticles = await getDeletedArticles();
 
-    if (offset >= savedArticles.length) {
-      return [];
-    }
     return savedArticles.filter(a => !deletedArticles.includes(a.id));
   }
 }
